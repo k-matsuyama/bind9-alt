@@ -1,11 +1,14 @@
-bind9 (1:9.9.5.dfsg-9+deb8u6~squeeze1) squeeze-security; urgency=low
+bind9 (1:9.9.5.dfsg-9+deb8u6~lenny1) lenny-security; urgency=low
 
-  * Build for squeeze.
+  * Build for lenny.
   * Remove systemd support.
   * Remove GeoIP support.
   * Remove exported libraries.
+  * Remove python tools. (because python-argparse is missing)
+  * Remove debian/po/sr@latin.po
+  * Fix debian/vars.in.
 
- -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Thu, 10 Mar 2016 19:30:14 +0900
+ -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Thu, 10 Mar 2016 19:42:23 +0900
 
 bind9 (1:9.9.5.dfsg-9+deb8u6) jessie-security; urgency=high
 
