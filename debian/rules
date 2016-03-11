@@ -69,7 +69,6 @@ configure-stamp:
 		--with-openssl=/usr \
 		--with-gssapi=/usr \
 		--with-gnu-ld \
-		--with-geoip=/usr \
 		--with-atf=no \
 		--enable-ipv6 \
 		--enable-rrl \
