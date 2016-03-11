@@ -49,7 +49,7 @@
 
 static isc_result_t
 addoptout(dns_message_t *message, dns_db_t *cache, dns_dbnode_t *node,
-	  dns_rdatatype_t covers, isc_stdtime_t now, dns_ttl_t maxttl,
+	  dns_rdatatype_t covers, isc_stdtime_t now, dns_ttl_t minttl, dns_ttl_t maxttl,
 	  isc_boolean_t optout, isc_boolean_t secure,
 	  dns_rdataset_t *addedrdataset);
 
@@ -99,26 +99,26 @@ copy_rdataset(dns_rdataset_t *rdataset, isc_buffer_t *buffer) {
 
 isc_result_t
 dns_ncache_add(dns_message_t *message, dns_db_t *cache, dns_dbnode_t *node,
-	       dns_rdatatype_t covers, isc_stdtime_t now, dns_ttl_t maxttl,
+	       dns_rdatatype_t covers, isc_stdtime_t now, dns_ttl_t minttl, dns_ttl_t maxttl,
 	       dns_rdataset_t *addedrdataset)
 {
-	return (addoptout(message, cache, node, covers, now, maxttl,
+	return (addoptout(message, cache, node, covers, now, minttl, maxttl,
 			  ISC_FALSE, ISC_FALSE, addedrdataset));
 }
 
 isc_result_t
 dns_ncache_addoptout(dns_message_t *message, dns_db_t *cache,
 		     dns_dbnode_t *node, dns_rdatatype_t covers,
-		     isc_stdtime_t now, dns_ttl_t maxttl,
+		     isc_stdtime_t now, dns_ttl_t minttl, dns_ttl_t maxttl,
 		     isc_boolean_t optout, dns_rdataset_t *addedrdataset)
 {
-	return (addoptout(message, cache, node, covers, now, maxttl,
+	return (addoptout(message, cache, node, covers, now, minttl, maxttl,
 			  optout, ISC_TRUE, addedrdataset));
 }
 
 static isc_result_t
 addoptout(dns_message_t *message, dns_db_t *cache, dns_dbnode_t *node,
-	  dns_rdatatype_t covers, isc_stdtime_t now, dns_ttl_t maxttl,
+	  dns_rdatatype_t covers, isc_stdtime_t now, dns_ttl_t minttl, dns_ttl_t maxttl,
 	  isc_boolean_t optout, isc_boolean_t secure,
 	  dns_rdataset_t *addedrdataset)
 {
@@ -187,6 +187,8 @@ addoptout(dns_message_t *message, dns_db_t *cache, dns_dbnode_t *node,
 				    type == dns_rdatatype_nsec3) {
 					if (ttl > rdataset->ttl)
 						ttl = rdataset->ttl;
+					if (ttl < minttl)
+						ttl = minttl;
 					if (trust > rdataset->trust)
 						trust = rdataset->trust;
 					/*
@@ -614,13 +616,11 @@ dns_ncache_getsigrdataset(dns_rdataset_t *ncacherdataset, dns_name_t *name,
 		dns_name_fromregion(&tname, &remaining);
 		INSIST(remaining.length >= tname.length);
 		isc_buffer_forward(&source, tname.length);
-		remaining.length -= tname.length;
-		remaining.base += tname.length;
+		isc_region_consume(&remaining, tname.length);
 
 		INSIST(remaining.length >= 2);
 		type = isc_buffer_getuint16(&source);
-		remaining.length -= 2;
-		remaining.base += 2;
+		isc_region_consume(&remaining, 2);
 
 		if (type != dns_rdatatype_rrsig ||
 		    !dns_name_equal(&tname, name)) {
@@ -632,8 +632,7 @@ dns_ncache_getsigrdataset(dns_rdataset_t *ncacherdataset, dns_name_t *name,
 		INSIST(remaining.length >= 1);
 		trust = isc_buffer_getuint8(&source);
 		INSIST(trust <= dns_trust_ultimate);
-		remaining.length -= 1;
-		remaining.base += 1;
+		isc_region_consume(&remaining, 1);
 
 		raw = remaining.base;
 		count = raw[0] * 256 + raw[1];
