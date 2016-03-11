@@ -37,7 +37,8 @@ endif
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
-	dh_autotools-dev_updateconfig
+	chmod +x debian/tool/*
+	debian/tool/dh_autotools-dev_updateconfig
 	dh_autoreconf
 	# test -e export || mkdir export && cp -r * export || true
 	# cd export && ./configure \
@@ -104,7 +105,8 @@ clean:
 	rm -f doc/arm/Bv9ARM.pdf
 	rm -rf export
 	dh_autoreconf_clean
-	dh_autotools-dev_restoreconfig
+	chmod +x debian/tool/*
+	debian/tool/dh_autotools-dev_restoreconfig
 	dh_clean
 
 newtemplate:
