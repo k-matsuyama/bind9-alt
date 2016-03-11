@@ -1,5 +1,3 @@
-usr/sbin/dnssec-checkds
-usr/sbin/dnssec-coverage
 usr/sbin/dnssec-dsfromkey
 usr/sbin/dnssec-keyfromlabel
 usr/sbin/dnssec-keygen
@@ -12,7 +10,6 @@ usr/sbin/named-checkzone
 usr/sbin/named-compilezone
 usr/sbin/rndc
 usr/sbin/rndc-confgen
-usr/share/man/man8/dnssec-checkds.8
 usr/share/man/man8/dnssec-dsfromkey.8
 usr/share/man/man8/dnssec-keyfromlabel.8
 usr/share/man/man8/dnssec-keygen.8
