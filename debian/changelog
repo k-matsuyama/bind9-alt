@@ -1,4 +1,4 @@
-bind9 (1:9.9.5.dfsg-9+deb8u6~lenny1) lenny-security; urgency=low
+bind9 (1:9.9.5.dfsg-9+deb8u7~lenny1) lenny-security; urgency=low
 
   * Build for lenny.
   * Remove systemd support.
@@ -8,7 +8,17 @@ bind9 (1:9.9.5.dfsg-9+deb8u6~lenny1) lenny-security; urgency=low
   * Remove debian/po/sr@latin.po
   * Fix debian/vars.in.
 
- -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Thu, 10 Mar 2016 19:42:23 +0900
+ -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Thu, 29 Sep 2016 00:26:30 +0900
+
+bind9 (1:9.9.5.dfsg-9+deb8u7) jessie-security; urgency=high
+
+  * CVE-2016-2775: lwresd crash with long query name.
+    Backport of upstream commit 38cc2d14e218e536e0102fa70deef99461354232.
+    Closes: #831796.
+  * CVE-2016-2776: assertion failure due to unspecified crafted query.
+    Fix based on 43139-9-9.patch from ISC.  Closes: #839010.
+
+ -- Florian Weimer <fw@deneb.enyo.de>  Tue, 27 Sep 2016 19:46:00 +0200
 
 bind9 (1:9.9.5.dfsg-9+deb8u6) jessie-security; urgency=high
 
