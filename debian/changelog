@@ -1,4 +1,4 @@
-bind9 (1:9.9.5.dfsg-9+deb8u8~lenny1) lenny-security; urgency=low
+bind9 (1:9.9.5.dfsg-9+deb8u9~lenny1) lenny-security; urgency=low
 
   * Build for lenny.
   * Remove systemd support.
@@ -8,7 +8,21 @@ bind9 (1:9.9.5.dfsg-9+deb8u8~lenny1) lenny-security; urgency=low
   * Remove debian/po/sr@latin.po
   * Fix debian/vars.in.
 
- -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Wed, 02 Nov 2016 16:02:19 +0900
+ -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Thu, 12 Jan 2017 13:46:17 +0900
+
+bind9 (1:9.9.5.dfsg-9+deb8u9) jessie-security; urgency=medium
+
+  * Apply patches from ISC.
+  * CVE-2016-9131: Assertion failure related to caching of TKEY records
+    in upstream DNS responses.
+  * CVE-2016-9147: Processing of RRSIG records in upstream DNS response
+    without corresponding signed data could lead to an assertion failure.
+  * CVE-2016-9444: Missing RRSIG records in the authority section of
+    upstream responses could lead to an assertion failure.
+  * RT #43779: Fix handling of CNAME/DNAME responses.  (Regression due
+    to the CVE-2016-8864 fix.)
+
+ -- Florian Weimer <fw@deneb.enyo.de>  Wed, 11 Jan 2017 11:50:31 +0100
 
 bind9 (1:9.9.5.dfsg-9+deb8u8) jessie-security; urgency=medium
 
