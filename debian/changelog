@@ -1,3 +1,11 @@
+bind9 (1:9.9.5.dfsg-9+deb8u10~lenny2) lenny-security; urgency=low
+
+  * Changes from 9.9.9-P8.
+  * Fix CVE-2017-3136, CVE-2017-3137 and CVE-2017-3138.
+  * Update built-in root keys.
+
+ -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Thu, 04 May 2017 15:12:18 +0900
+
 bind9 (1:9.9.5.dfsg-9+deb8u10~lenny1) lenny-security; urgency=low
 
   * Build for lenny.
