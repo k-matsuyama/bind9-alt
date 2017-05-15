@@ -1,11 +1,3 @@
-bind9 (1:9.9.5.dfsg-9+deb8u10~squeeze2) squeeze-security; urgency=low
-
-  * Changes from 9.9.9-P8.
-  * Fix CVE-2017-3136, CVE-2017-3137 and CVE-2017-3138.
-  * Update built-in root keys.
-
- -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Thu, 04 May 2017 14:50:25 +0900
-
 bind9 (1:9.9.5.dfsg-9+deb8u10~squeeze1) squeeze-security; urgency=low
 
   * Build for squeeze.
