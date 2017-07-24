@@ -1,11 +1,19 @@
-bind9 (1:9.9.5.dfsg-9+deb8u12~squeeze1) squeeze-security; urgency=low
+bind9 (1:9.9.5.dfsg-9+deb8u13~squeeze1) squeeze-security; urgency=low
 
   * Build for squeeze.
   * Remove systemd support.
   * Remove GeoIP support.
   * Remove exported libraries.
 
- -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Mon, 10 Jul 2017 12:51:02 +0900
+ -- MATSUYAMA Kengo <k-matsuyama@bns-g.com>  Mon, 24 Jul 2017 12:43:21 +0900
+
+bind9 (1:9.9.5.dfsg-9+deb8u13) jessie-security; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Add patch to fix regression introduced by patch for CVE-2017-3042.
+                                                                closes: #868952
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Sun, 23 Jul 2017 15:15:58 +0200
 
 bind9 (1:9.9.5.dfsg-9+deb8u12) jessie-security; urgency=high
 
